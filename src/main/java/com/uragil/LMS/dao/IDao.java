@@ -18,11 +18,11 @@ public interface IDao {
 	public ArrayList<MemberDto> m_listDao();
 	public void infoM(String mpw, String mname, String mphone, String mid);
 	public void deleteMemDao(String mid);
-	
+	public void brcountDao(String bcode);
 	
 	//bookDao
 	public ArrayList<BookDto> b_listDao();//리스트 가져오기
-
+	public ArrayList<BookDto> b_listDao1();//리스트 가져오기
 	public void b_inputDao(String bname, String bcategori, String bwriter);
 	public void bstateDao();
 	

@@ -44,7 +44,6 @@
 						}else{
 							session.setAttribute("ValidMem", "yes");
 						}
-						 
 					%>
 											
 					

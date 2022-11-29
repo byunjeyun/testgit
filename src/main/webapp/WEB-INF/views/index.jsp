@@ -17,9 +17,9 @@
 </head>
 
 
-<body>
+<body bgcolor="">
 <%@ include file="include/header.jsp" %>
-<h2 align="center">Uragil 도서 관리시스템 웹에 방문해 주셔서 감사합니다.</h2> <br>
+<h2 align="center" ><span style="">Uragil 도서 관리시스템 웹에 방문해 주셔서 감사합니다.</span></h2> <br>
 
 
 <center>
@@ -32,8 +32,8 @@
 			발견하지 못한 오류가 숨어있을수 있습니다. 당첨되신 분은 <br> 
 		uragiljay@gmail.com 혹은 <a href="http://uragil-jay.tistory.com">블로그</a>에 남겨주시면 <br>
 		감사한 마음으로 최대한 수정하겠습니다!!. <br>
-		현재 관리자 ID/PW 는 <span style="color:black;">'admin' 'admin'</span> 이며<br> 
-		Guest ID/PW 는 <span style="color:black;">'tiger' '123'</span>  입니다.  자유롭게 로그인 후 이용해주세요!!</h5>
+		현재 관리자 ID/PW 는 <span style="color:#adb;">'admin' 'admin'</span> 이며<br> 
+		Guest ID/PW 는 <span style="color:#adb;">'tiger' '123'</span>  입니다.  자유롭게 로그인 후 이용해주세요!!</h5>
 				
 			
 					
@@ -88,42 +88,101 @@
 		</form>
 		
 		
-		<aside>
+				<aside>
 		<div  style="float: left; width: 280px;margin-left:5px; margin-top:5px">
-			<table width="280px" bgcolor="#432" color="blue">
+			<table width="280px" bgcolor="" cellspacing="0" padding="0">
 		      <ul>
-		      <tr class="board01">
-			    <th>신규 도서</th>
+		      <tr class="board04">
+			    <th colspan="2">New no.3</th>
 			  </tr>
 			 <tr class="board02">
-			    <td>${book01.bname}</td>
+			 <td>
+			    <c:choose>
+					<c:when test="${fn:length(nbook01.bname) > 12}">
+						<c:out value="${fn:substring(nbook01.bname,0,11) }" /> ...
+					</c:when> 
+					<c:otherwise>
+						<c:out value="${nbook01.bname}" />
+					</c:otherwise>
+				</c:choose>
+			</td>
 			    
+			    <td>${nbook01.bwriter}</td>
 			  </tr>
 			  <tr class="board02">
-			    <td>${book02.bname}</td>
+			    <td>
+			    <c:choose>
+					<c:when test="${fn:length(nbook02.bname) > 12}">
+						<c:out value="${fn:substring(nbook02.bname,0,11) }" /> ...
+					</c:when> 
+					<c:otherwise>
+						<c:out value="${nbook02.bname}" />
+					</c:otherwise>
+				</c:choose>
+			</td>
+			    <td>${nbook02.bwriter}</td>
 			  </tr>
 			  <tr class="board02">
-			    <td>${book03.bname}</td>
+			     <td>
+			    <c:choose>
+					<c:when test="${fn:length(nbook03.bname) > 12}">
+						<c:out value="${fn:substring(nbook03.bname,0,11) }" /> ...
+					</c:when> 
+					<c:otherwise>
+						<c:out value="${nbook03.bname}" />
+					</c:otherwise>
+				</c:choose>
+			</td>
+			    <td>${nbook03.bwriter}</td>
 			  </tr>
 		    </ul>
 			</table>
 		</div>
 		
 		<div  style="float: right; width: 280px; margin-right:5px; margin-top:5px">
-			<table width="280px" bgcolor="darkgreen">
+			<table width="280px" bgcolor="" cellspacing="0" padding="0">
 			    <ul>
-			      <tr class="board02">
-			    <th >인기 도서</th>
+			      <tr class="board04">
+			    <th  colspan="2">Best no.3</th>
 			  </tr>
 			  <tr class="board01">
-			    <td>${book01.bname}</td>
-			    
+			     <td>
+			    <c:choose>
+					<c:when test="${fn:length(bbook01.bname) > 12}">
+						<c:out value="${fn:substring(bbook01.bname,0,11) }" /> ...
+					</c:when> 
+					<c:otherwise>
+						<c:out value="${bbook01.bname}" />
+					</c:otherwise>
+				</c:choose>
+			</td>
+			    <td>${bbook01.brcount}</td>
 			  </tr>
 			  <tr class="board01">
-			    <td>${book02.bname}</td>
+			     <td>
+			    <c:choose>
+					<c:when test="${fn:length(bbook02.bname) > 12}">
+						<c:out value="${fn:substring(bbook02.bname,0,11) }" /> ...
+					</c:when> 
+					<c:otherwise>
+						<c:out value="${bbook02.bname}" />
+					</c:otherwise>
+				</c:choose>
+			</td>
+			    <td>${bbook02.brcount}</td>
 			  </tr>
 			 <tr class="board01">
-			    <td>${book03.bname}</td>
+			     <td>
+			    <c:choose>
+					<c:when test="${fn:length(bbook03.bname) > 12}">
+						<c:out value="${fn:substring(bbook03.bname,0,11) }" /> ...
+					</c:when> 
+					<c:otherwise>
+						<c:out value="${bbook03.bname}" />
+					</c:otherwise>
+				</c:choose>
+			</td>
+			    <td>${bbook03.brcount}</td>
 			  </tr>
 			    </ul>
 			</table>

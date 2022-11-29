@@ -42,6 +42,11 @@
 		SELECT * FROM b_book ORDER BY bcode DESC
 	</select>
 
+	<select id="b_listDao1" resultType="com.uragil.LMS.dto.BookDto">
+		SELECT * FROM b_book ORDER BY brcount DESC
+	</select>
+
+
 <!-- <select id="br_listDao2" resultType="com.uragil.LMS.dto.BorrowDto">
 		SELECT rdate FROM b_borrow where brbcode=#{param1}
 	</select>
@@ -74,6 +79,11 @@
 	<update id="bookModifyDao">
 		UPDATE b_book SET bname=#{param1}, bcategori=#{param2}, bwriter=#{param3} WHERE bcode=#{param4} 	
 	</update>
+	
+	<update id="brcountDao">
+		UPDATE b_book SET brcount = brcount + 1  WHERE bcode = #{param1} 	
+	</update>
+		
 	
 
 <!-- borrow SQL -->	
@@ -116,6 +126,3 @@
 	</select>
 	
 </mapper>
-
-
-

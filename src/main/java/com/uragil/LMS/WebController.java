@@ -34,10 +34,15 @@ public class WebController {
 	public String main(Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		ArrayList<BookDto> bDtos = dao.b_listDao();
+		ArrayList<BookDto> bDtos1 = dao.b_listDao1();
 
-		model.addAttribute("book01", bDtos.get(0));
-		model.addAttribute("book02", bDtos.get(1));
-		model.addAttribute("book03", bDtos.get(2));	
+		model.addAttribute("nbook01", bDtos.get(0));
+		model.addAttribute("nbook02", bDtos.get(1));
+		model.addAttribute("nbook03", bDtos.get(2));
+		
+		model.addAttribute("bbook01", bDtos1.get(0));
+		model.addAttribute("bbook02", bDtos1.get(1));
+		model.addAttribute("bbook03", bDtos1.get(2));
 		return "index";
 			
 		}
@@ -46,10 +51,15 @@ public class WebController {
 	public String home(Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		ArrayList<BookDto> bDtos = dao.b_listDao();
+		ArrayList<BookDto> bDtos1 = dao.b_listDao1();
 
-		model.addAttribute("book01", bDtos.get(0));
-		model.addAttribute("book02", bDtos.get(1));
-		model.addAttribute("book03", bDtos.get(2));
+		model.addAttribute("nbook01", bDtos.get(0));
+		model.addAttribute("nbook02", bDtos.get(1));
+		model.addAttribute("nbook03", bDtos.get(2));
+		
+		model.addAttribute("bbook01", bDtos1.get(0));
+		model.addAttribute("bbook02", bDtos1.get(1));
+		model.addAttribute("bbook03", bDtos1.get(2));
 			
 		return "home";
 			
@@ -59,12 +69,15 @@ public class WebController {
 	public String index(Model model) {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		ArrayList<BookDto> bDtos = dao.b_listDao();
+		ArrayList<BookDto> bDtos1 = dao.b_listDao1();
 
-		model.addAttribute("book01", bDtos.get(0));
-		model.addAttribute("book02", bDtos.get(1));
-		model.addAttribute("book03", bDtos.get(2));
+		model.addAttribute("nbook01", bDtos.get(0));
+		model.addAttribute("nbook02", bDtos.get(1));
+		model.addAttribute("nbook03", bDtos.get(2));
 		
-		
+		model.addAttribute("bbook01", bDtos1.get(0));
+		model.addAttribute("bbook02", bDtos1.get(1));
+		model.addAttribute("bbook03", bDtos1.get(2));		
 		return "index";
 	}
 	
@@ -253,11 +266,14 @@ public class WebController {
 		
 		
 		ArrayList<BookDto> bDtos = null;
+		ArrayList<BookDto> bDtos1 = null;
 		ArrayList<BorrowDto> brDtos = null;
 		
 		if(searchOption == null || searchKeyword == null) {
 			bDtos = dao.b_listDao();
+			bDtos1 = dao.b_listDao1();
 			brDtos = dao.br_listDao();
+			
 		} else {
 			if(searchOption.equals("title")) {
 				//제목 특정 키워드 검색한 결과
@@ -365,6 +381,7 @@ public class WebController {
 	public String br_inputOk(HttpServletRequest request, Model model) {
 		String brbcode = request.getParameter("brbcode");
 		String brmid = request.getParameter("brmid");
+		
 								
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -372,9 +389,10 @@ public class WebController {
 		int checkhavebcode = dao.checkhavebcodeDao(brbcode);
 		int checkbrmid = dao.checkbrmidDao(brmid);
 		if (checkbrbcode == 1 & checkhavebcode !=1 & checkbrmid ==1) {
-				 	
+			dao.brcountDao(brbcode);	 	
 			dao.br_inputDao(brbcode, brmid);
 			dao.bstateDao();
+			
 			
 			model.addAttribute("brbcode", brbcode);
 			model.addAttribute("bname", brmid);
@@ -383,6 +401,7 @@ public class WebController {
 		model.addAttribute("checkbrbcode", checkbrbcode);	    
 		model.addAttribute("checkhavebcode", checkhavebcode);
 		model.addAttribute("checkbrmid", checkbrmid);
+		
 		return  "brinputOk";
 		
 		//return  "redirect:br_list";
@@ -463,5 +482,3 @@ public class WebController {
 	}
 	
 }
-
-
